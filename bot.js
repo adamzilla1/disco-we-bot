@@ -56,35 +56,24 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     myurl = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + state + '&appid=' + auth.weatherToken;
 
                     request(myurl, { json: true }, function (err, res, body) {
-                        // console.log(err);
                         console.log(body);
-                        // console.log(body);
-                        // if (err) {
-                        //     return console.log(err);
-                        // } else {
-                        //     console.log(body.cod);
-
                         if (body.cod === 200) {
-                            bot.sendMessage({
-                                to: channelID,
-                                message: '-------------\nCITY: ' + city + ' ' + 'STATE: ' + state + '\n' + 'Current: ' + body.main.temp + ' Kelvin'
-                            });
-
-
-
-                            // bot.sendMessage({
-                            //     to: channelID,
-                            //     message: 'Current: ' + body.main.temp
-                            // });
+                            let message = '-------------\nCITY: ' + city + ' ' + 'STATE: ' + state + '\n' + 'Current: ' + body.main.temp + ' Kelvin\n' + body.weather["0"].description + '\n---------------------------'
+                            botSendMsg(message, channelID);
                         }
                     });
 
                 }
 
                 break;
-            // Just add any case commands if you want to..
 
         }
     }
 });
 
+function botSendMsg(msg, chanId) {
+    bot.sendMessage({
+        to: chanId,
+        message: msg
+    });
+}
