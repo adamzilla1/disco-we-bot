@@ -33,10 +33,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch (cmd) {
             // !ping
             case 'ping':
-                bot.sendMessage({
-                    to: channelID,
-                    message: 'Pong!'
-                });
+                botSendMsg('pong!', channelID);
                 break;
             case 'weather':
                 //TODO: format the input properly, -> "vancouver, canada" doesn't work properly, but "vancouver, ca" does
@@ -66,7 +63,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 }
 
                 break;
-
+            //TODO: add this functionality
+            case 'forecast':
+                break;
+            case 'embed':
+                // const embed = new Discord.RichEmbed()
+                //     .setImage("http://www.hockeydb.com/ihdb/photos/brock-boeser-2019-39.jpg");
+                // botSendMsg(embed, channelID);
+                bot.sendMessage({
+                    to: channelID,
+                    embed: {
+                        url: "http://www.hockeydb.com/ihdb/photos/brock-boeser-2019-39.jpg"
+                    }
+                });
+                break;
         }
     }
 });
