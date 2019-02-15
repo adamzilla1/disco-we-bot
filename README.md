@@ -6,7 +6,7 @@ Simple Discord weather bot to learn a few things.
 
 ### functionality
 
-* !weather
+* !weather - shows the current weather
 
 ### what i've learned
 
